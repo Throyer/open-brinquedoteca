@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2019 Renato Henrique
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<nav 
+    class="navbar navbar-expand-md shadow-sm navbar-light fixed-top bg-light" 
+    th:fragment="navbar">
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="fab fa-fort-awesome"></i>
+            Brinquedoteca
+        </a>
+    
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-label="Altenar navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div
+        class="collapse navbar-collapse"
+        id="navbar">
+        
+        <!-- Lado esquerdo do navbar -->
+        <ul class="navbar-nav mr-auto">            
+            <a
+                class="nav-item nav-link"
+                th:classappend="${home}"
+                th:href="@{/}">
+                <i class="fas fa-home"></i>
+                Home <span th:if="${home}" class="sr-only">(current)</span>
+            </a>       
+        </ul>
+
+        <!-- Lado direito do navbar -->
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a
+                    class="nav-item nav-link"
+                    th:classappend="${contato}"
+                    th:href="@{/contato}">
+                    <i class="fas fa-envelope"></i>
+                    Contato <span th:if="${contato}" class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <!-- dropdown gerenciamento -->
+            <li 
+                sec:authorize="isAuthenticated()"
+                class="nav-item dropdown"
+                th:classappend="${user}"
+                th:object="${#authentication.principal}">
+                <button class="nav-link dropdown-toggle btn btn-link"
+                        id="navbarDropdown" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="fas fa-user-circle"></i>
+                    <span th:text="*{apelido}"></span>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"
+                       th:href="@{/user}">
+                        <i class="fas fa-user-cog"></i>
+                        Conta
+                    </a>
+                    <div class="d-none d-sm-block dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/edificios(page=${0}, size=${10})}">
+                        <i class="fas fa-city"></i>
+                        Gerenciar edifcios
+                    </a>
+                    <a class="dropdown-item" th:href="@{/alunos(page=${0}, size=${10})}">
+                        <i class="fas fa-user-graduate"></i>
+                        Gerenciar alunos
+                    </a>
+                    <div class="d-none d-sm-block dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/logout}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        sair
+                    </a>
+                </div>
+            </li><!-- /Fim do dropdown gerenciamento -->
+
+        </ul><!-- /Fim do lado direito do navbar -->
+    </div>
+</nav><!-- /Fim da navbar -->

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2019 Renato Henrique
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <th:block th:replace="~{fragments/imports :: basic-css}"></th:block><!-- /links base -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+    </head>
+    <body class="bg-light">        
+        <form class="form-signin" th:action="@{/login}" method="POST">
+            <div class="row justify-content-center">
+                <img class="img-thumbnail shadow-sm mb-4" src="https://i.imgur.com/NXDe7ma.png" alt="brinquedoteca">         
+            </div>
+            <h1 class="h3 mb-3 font-weight-light text-center mt-2">Fazer login</h1>
+            
+            <label for="inputEmail" class="sr-only">Endereço de email</label>
+            <input
+                id="inputEmail"
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Email"
+                required
+                autofocus>
+            
+            <label for="inputPassword" class="sr-only">Senha</label>
+            <input
+                id="inputPassword"
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Senha"
+                required>
+            
+            <div class="row justify-content-center mb-2">
+                <div class="custom-control custom-checkbox">
+                    <input 
+                        type="checkbox"
+                        name="remember-me"
+                        class="custom-control-input"
+                        id="inputRememberMe">
+
+                    <label class="custom-control-label" for="inputRememberMe">Lembrar de mim</label>
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            
+            <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                <strong>Senha ou usuario invalido!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>        
+            </div>
+            
+            <!-- Acesso negado -->
+            <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
+                <strong>Acesso negado!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <hr>
+                Por favor faça o login com outro usuario ou entre em
+                <a th:href="@{/contato}">contato</a> com o administrador do sistema.
+            </div>
+
+            <p class="mt-5 mb-3 text-center text-muted">
+                <strong>By</strong> Renato Henrique <small>2019</small>
+                <a href="https://github.com/Throyer">
+                    <i class="fab fa-github"></i>
+                </a>
+            </p>
+        </form>
+        
+        <th:block th:replace="~{fragments/imports :: basic-javascript}"></th:block><!-- /scripts base -->
+    </body>
+</html>
