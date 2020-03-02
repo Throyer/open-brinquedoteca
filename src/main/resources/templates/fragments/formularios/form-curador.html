@@ -1,0 +1,91 @@
+<form th:fragment="form-curador" action="/curador/formulario" method="post" th:object="${curador}" class="needs-validation" novalidate>
+    <!-- mensagens de erro -->
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+        <ul class="list-group">
+            <li class="lista-erros" th:each="err : ${#fields.errors('*')}" th:utext="${err}">
+                <span class="badge badge-primary badge-pill">14</span>
+            </li>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+            </span>
+        </button>
+    </div>
+    <input hidden th:field="${curador.id}" name="id">
+
+    <div class="row">
+        <div class="col-md-5 mb-3">
+            <label for="inputNome">Nome</label>
+            <input th:field="*{nome}" name="nome" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Por favor, informe o nome.
+            </div>
+        </div>
+        <div class="col-md-5 mb-3">
+            <label for="inputNomeConhecido">Sobrenome</label>
+            <input th:field="*{sobrenome}" name="nomeConhecido" type="text" class="form-control" required>
+            <div class="invalid-feedback">
+                Por favor, informe o sobrenome.
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="selectCargos">Canto</label>
+            <select name="cargo" class="custom-select d-block w-100" id="selectCargos" required>
+                <option value="">Selecionar</option>
+                <option th:each="cargo : ${cargos}" th:selected="${#lists.contains(curador.cargos, cargo)}" th:value="${cargo.nome}">
+                <span th:text="${cargo.nome}"></span>
+                </option>
+            </select>
+            <div class="invalid-feedback">
+                Por favor, selecione o cargo do curador.
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <label for="inputEmail">E-mail</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputEmail"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input th:field="*{email}" name="email" type="email" class="form-control" aria-describedby="inputEmail" required>
+                <div class="invalid-feedback">
+                    Por favor, digite um email valido.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <div th:if="${#fields.hasErrors('email')}" class="alert alert-warning alert-dismissible fade show">
+                <label th:uerrors="*{email}"></label>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="inputSenha">Senha</label>
+            <small class="text-muted"> entre 8 a 12 caracteres ao menos um: A-Z, a-z, caractere especial e número.</small>
+            <input th:field="*{senha}" name="senha" required class="form-control" id="inputSenha" type="password">
+            <div class="invalid-feedback">
+                Senha invalida.
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="inputConfirmarSenha">Confirmar senha</label>
+            <input name="confirmarSenha" required class="form-control" id="inputConfirmarSenha" type="password">
+            <div class="invalid-feedback">
+                Por favor confirme a senha.
+            </div>
+        </div>
+    </div>
+    <!-- /Fim dos campos da coleta -->
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+</form>

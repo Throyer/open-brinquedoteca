@@ -1,0 +1,14 @@
+<div th:fragment="card-objeto" class="card objetos border border-light">
+    <a th:href="@{/objeto/view/{id}(id=${objeto.id})}">
+        <img th:src="${objeto.urlImagem != null ? objeto.urlImagem : 'https://i.imgur.com/Nj4nV08.png'}" class="card-img-top">
+    </a>
+    <div class="card-body">                                        
+        <h4 th:text="${objeto.nome}" class="card-title objeto-titulo"></h4>
+        <p th:text="${objeto.preview != null && objeto.preview != '' ? objeto.preview : 'Descrição do Objeto não informada.' }" class="card-text"></p>
+    </div>
+    <div class="card-footer text-muted">
+        <a class="btn btn-outline-success btn-block" th:href="@{/objeto/view/{id}(id=${objeto.id})}">
+            Abrir
+        </a>
+    </div>
+</div>

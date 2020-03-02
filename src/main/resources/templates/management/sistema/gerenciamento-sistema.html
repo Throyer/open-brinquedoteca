@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar | Sistema</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+    </head>
+    <body>
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <main class="container">
+            <h1 class="text-muted text-center">Gerencar sistema</h1>
+            <p class="text-center">
+                Esta tela recebera futuramente, funcionalidades voltadas para o
+                gerenciamento do sistema, como diretorio de upload das imagens entre
+                outras configurações
+            </p>
+        </main>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+    </body>
+</html>

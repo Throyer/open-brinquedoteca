@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
+        <title th:text="${canto.nome}">Brinquedoteca</title>
+    </head>
+    <body class="background-azul">
+        <!-- navbar com icone dos cantos ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (view_cantos='true')}"></nav>
+        <!-- conteudo da pagina de canto -->
+        <main class="container espaco">            
+            <!-- conteudo do canto -->
+            <h1 th:text="${canto.nome}" class="titulo-canto"></h1>
+            <div class="text-light" id="responsive">
+                <span th:utext="${canto.descricao != null ? canto.descricao : 'Descrição do canto não informada.'}"></span>
+            </div>
+            <hr>
+            <form th:action="@{/canto/pesquisa}" class="form-group row">
+                <input hidden type="number" th:value="${canto.id}" name="id" class="form-control form-control-sm mb-2" placeholder="Pesquisar">
+                <div class="col-sm-10">
+                    <input type="text" name="nome" class="form-control form-control-sm mb-2" placeholder="Pesquisar">
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-block btn-sm btn-success mb-2">Procurar</button>
+                </div>                    
+            </form>
+            <div class="row">
+                <th:block th:each="objeto, count: ${objetoList}">
+                    <div class="col-md-4 mb-4">
+                        <div th:replace="~{fragments/card-objeto :: card-objeto}"></div>
+                    </div>
+                </th:block>
+            </div>
+            <!-- fim do conteudo do canto -->
+            <div th:replace="~{fragments/pagination/pagination-objetos :: pagination-objetos}"></div>
+        </main><!-- fim do conteudo -->
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: descricao-responsiva-javascript}"></script>
+    </body>
+</html>

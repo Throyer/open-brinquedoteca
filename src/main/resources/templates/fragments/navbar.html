@@ -1,0 +1,99 @@
+<nav id="navbar" class="navbar navbar-expand-md navbar-light fixed-top bg-light" th:fragment="navbar">
+    <a class="navbar-brand" href="/home">
+        <img class="d-inline-block align-top" width="30" height="30" src="https://png.icons8.com/ios/50/000000/teddy-bear-filled.png">
+        Brinquedoteca
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Lado esquerdo do navbar -->
+        <ul class="navbar-nav mr-auto">
+
+            <a th:class="${home} ? 'nav-item nav-link active' : 'nav-item nav-link' " href="/">
+                <i class="fas fa-home"></i>
+                Início
+                <span th:if="${home}" class="sr-only">(current)</span>
+            </a>
+
+            <!-- dropdown cantos -->
+            <li class="nav-item dropdown">
+                <a th:class="${view_cantos} ? 'nav-link dropdown-toggle active' : 'nav-link dropdown-toggle' "
+                   id="navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="fab fa-fort-awesome"></i>
+                    <span th:text="${canto} ? ${canto.nome} : 'Escolher canto'"></span>
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a th:each="canto : ${cantos}" class="dropdown-item" th:href="@{/canto/exibe(id=${canto.id})}">
+                        <span th:text="${canto.nome}"></span>
+                    </a>
+                </div>
+            </li><!-- /Fim do dropdown cantos -->
+        </ul>
+
+        <!-- Lado direito do navbar -->
+        <ul class="navbar-nav ml-auto">
+            <a th:class="${sugestao} ? 'nav-item nav-link active' : 'nav-item nav-link' " href="/sugestao">
+                <i class="fas fa-paper-plane"></i>
+                Entrar em contato
+                <span th:if="${sugestao}" class="sr-only">(current)</span>
+            </a>
+
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a th:class="${login} ? 'nav-item nav-link active' : 'nav-item nav-link' " href="/login">
+                    <i class="fas fa-door-open"></i>
+                    Entrar
+                    <span th:if="${login}" class="sr-only">(current)</span>
+                </a>
+            </li> 
+
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <button th:class="${gerenciamento} ? 'nav-link dropdown-toggle btn btn-link active' : 'nav-link dropdown-toggle btn btn-link' "
+                        id="navbarDropdown" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="fas fa-user-circle"></i>
+                    <span th:if="${usuario}" th:text="${usuario.nome}"></span>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"
+                       href="/conta">
+                        <i class="fas fa-user-cog"></i>
+                        Conta
+                    </a>
+                    <div sec:authorize="hasAuthority('ADMINISTRADOR')" class="dropdown-divider"></div>
+                    <a sec:authorize="hasAuthority('ADMINISTRADOR')" class="d-none d-sm-block dropdown-item"
+                       href="/sistema">
+                        <i class="fas fa-cog"></i>
+                        Gerenciar Sistema
+                    </a>
+                    <a sec:authorize="hasAuthority('ADMINISTRADOR')" class="d-none d-sm-block dropdown-item"
+                       href="/curador/gerenciamento">
+                        <i class="fas fa-user-graduate"></i>
+                        Gerenciar Curadores
+                    </a>
+                    <div sec:authorize="hasAuthority('CURADOR')" class="d-none d-sm-block dropdown-divider"></div>
+                    <a sec:authorize="hasAuthority('CURADOR')" class="d-none d-sm-block dropdown-item"
+                       href="/canto/gerenciamento">
+                        <i class="fas fa-cube"></i>
+                        Gerenciar Cantos
+                    </a>
+                    <a class="d-none d-sm-block dropdown-item"
+                       href="/objeto/gerenciamento">
+                        <i class="fab fa-fort-awesome"></i>
+                        Gerenciar Objetos
+                    </a>
+                    <div class="d-none d-sm-block dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        sair
+                    </a>
+                </div>
+            </li><!-- /Fim do dropdown gerenciamento -->
+        </ul><!-- /Fim do lado direito do navbar -->
+    </div>
+</nav>

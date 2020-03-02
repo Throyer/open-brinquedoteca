@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Login Brinquedoteca</title>
+        <link th:replace="~{fragments/css :: login-css}"/>
+    </head>
+    <body>
+        <!-- navbar com icone de login ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (login='true')}"></nav>
+        <div class="text-center login">
+            <form th:action="@{/login}" method="POST" class="form-signin">
+                <div th:if="${param.negado}" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Acesso negado!</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <hr>
+                    Por favor faça o login com
+                    outro usuario ou entre em contato com o administrador do sistema.              
+                </div>
+                <div class="row justify-content-center">
+                    <img class="mb-4" src="https://user-images.githubusercontent.com/35958628/35564070-3437f564-05b9-11e8-9dc4-9690f3b77aa2.png" alt="" width="150" height="150">
+                </div>
+                <!--<h1 class="h3 mb-3 font-weight-normal">Por favor, faça o login.</h1>-->
+                <label for="inputEmail" class="sr-only">Endereço de email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Endereço de E-mail" required autofocus>
+                <label for="inputPassword" class="sr-only">Senha</label>
+                <input type="password" id="senha" name="password" class="form-control" placeholder="Senha" required>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Lembrar-se
+                    </label>
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Senha ou usuario invalido!</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>        
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+            </form>
+        </div>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Formulário | Curador</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: simplemde-css}" />
+    </head>
+    <body>
+        <!-- navbar com iconte de gerenciamento ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <!-- conteudo de formulario de canto -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- lado esquedo - sidebar curador -->
+                <nav th:replace="~{fragments/sidebars/sidebar-curador :: sidebar-curador (formulario='true')}"></nav>
+                <!-- lado direito - formulario curador -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Formulário de Curador</h4>
+                    <!-- alerta de sucesso no cadastro -->
+                    <div th:replace="~{fragments/alerts/alertas-curador :: cadastro}"></div>
+                    <!-- formulario de canto -->
+                    <form th:replace="~{fragments/formularios/form-curador :: form-curador}"></form>
+                </main>
+            </div>
+        </div>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
+    </body>
+</html>

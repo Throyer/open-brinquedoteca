@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
+        <title>Enviar sugestão</title>
+    </head>
+    <body>
+        <!-- navbar com icone de contato ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (contato='true')}"></nav>
+        <!-- conteudo da pagina contato -->
+        <main class="container espaco">
+            <!-- Conteudo -->
+            <h3>Formulario de sugestão de conteudo</h3>
+            <form action="#">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input type="text" class="form-control" id="input_nome" placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="text" class="form-control" id="input_email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mensagem</label>
+                            <textarea maxlength="200" minlength="5" class="form-control" id="exampleInputEmail1" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar mensagem</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+    </body>
+</html>

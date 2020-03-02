@@ -1,0 +1,109 @@
+<form th:fragment="form-objeto" th:action="@{/objeto/formulario}" method="post" th:object="${objetoLudico}" class="needs-validation" enctype="multipart/form-data" novalidate>
+    
+    <input hidden th:field="*{id}" name="id">
+    <input hidden th:field="*{usuario}" name="usuario">
+    <hr class="mb-4">
+    <!-- mensagens de erro -->
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+        <ul class="list-group">
+            <li class="lista-erros" th:each="err : ${#fields.errors('*')}" th:utext="${err}"></li>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+            </span>
+        </button>
+    </div>
+    <h6 class="mb-3">Informações sobre o objeto lúdico</h6>
+    <!-- Campos do objeto lúdico -->
+    <div class="row">
+        <th:block th:if="*{id != null}">
+            <div class="col-md-6 mb-3">
+                <img class="img-thumbnail mb-2" id="preview" th:src="*{urlImagem}">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" >Capa do objeto lúdico</span>
+                    </div>
+                    <div class="custom-file">
+                        <input id="imagem" name="imagem" type="file" class="custom-file-input">
+                        <label class="custom-file-label" for="imagem">Escolher arquivo</label>
+                    </div>
+                </div>
+                <div id="alerta" class="alert alert-warning" role="alert">
+                    <strong>A resolução recomendada é de 580x385.</strong>
+                    Uploads de imagens maiores que esta resolução, pode causar deformações na imagem.<br>
+                    <strong>Tamanho maximo 5MB.</strong>
+                </div>
+            </div>
+        </th:block>
+        <div th:class="*{id == null ? 'col-md-12 mb-3' : 'col-md-6 mb-3'}">
+            <input hidden id="imagem" name="imagem" type="file" class="custom-file-input">
+            <div class="mb-4">
+                <label for="selectCanto">Canto</label>
+                <select name="canto" class="custom-select d-block w-100" id="selectCanto" required>
+                    <option value="">Selecionar canto</option>
+                    <option th:each="canto : ${cantos}" th:selected="*{canto} == ${canto}" th:value="${canto.id}">
+                    <span th:text="${canto.nome}"></span>
+                    </option>
+                </select>
+                <div class="invalid-feedback mb-2">
+                    Por favor, selecione o canto do objeto lúdico.
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="inputNome">Nome</label>
+                <input th:field="*{nome}" name="nome" type="text" class="form-control" id="inputNome" value="" required>
+                <div class="invalid-feedback">
+                    Digite o nome do objeto lúdico.
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="inputPreview">
+                    Breve descrição 
+                    <small>
+                        Sera exibido na listagem na pagina de canto.
+                        <i class="fas fa-question-circle text-danger"></i>
+                        obrigatório
+                    </small>
+                </label>
+                <textarea style="height: 195px" th:field="*{preview}" name="preview" maxlength="150" class="form-control" id="inputPreview" required>
+                </textarea>
+                <div class="invalid-feedback">
+                    Forneça uma breve descrição sobre esse objeto lúdico, para exibição na pagina de canto.
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col">
+            <label for="editor-markdown-descricao">
+                Descrição
+                <small>
+                    <i class="fas fa-question-circle text-danger"></i>
+                    obrigatório
+                </small>
+            </label>
+            <textarea name="descricao" id="editor-markdown-descricao"
+                      th:field="*{descricao}">                                              
+            </textarea>
+        </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col">
+            <label for="editor-markdown-referencias">
+                Referências
+                <small>
+                    <i class="fas fa-question-circle text-danger"></i>
+                    obrigatório
+                </small>
+            </label>
+            <textarea name="referencias" id="editor-markdown-referencias"
+                      th:field="*{referencias}">                                              
+            </textarea>
+        </div>
+    </div>
+    <!-- /Fim dos campos do objeto lúdico -->
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+</form>

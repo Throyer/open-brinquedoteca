@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{})}">
+        <title th:text="${objeto.nome}">nome do objeto</title>
+    </head>
+    <body class="background-roxo">
+        <!-- navbar com icone de objeto ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (view_cantos='true')}"></nav>
+        <!-- container principal -->
+        <div id="responsive" class="container mt-4">
+            <!-- Informações do objeto lúdico -->
+            <h1 th:utext="${objeto.nome}" class="titulo-canto"></h1>
+            <div class="text-light">
+                <div th:utext="${objeto.descricao}"></div>
+            </div>
+            <hr>
+            <h3 class="titulo-canto">Referências e links</h3>
+            <div class="card-footer rounded bg-light">
+                <div th:utext="${objeto.referencias}"></div>
+            </div>
+        </div><!-- fim do container principal -->
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: descricao-responsiva-javascript}"></script>
+    </body>
+</html>

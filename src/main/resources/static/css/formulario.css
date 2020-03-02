@@ -1,0 +1,33 @@
+/*
+Version : 12/07/2018
+Author  : Renato henique Horacio dos Santos.
+
+Documento de estilo para os formularios.
+*/
+
+.container {
+    max-width: 960px;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top-gray { border-top-color: #adb5bd; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.lh-condensed { line-height: 1.25; }
+
+.campo-invalido { 
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.lista-erros {
+    list-style: none;
+}
+
+.campo-invalido-input { border-color: #dc3545; }
+
+.campo-sucesso-input { border-color: #28a745; }

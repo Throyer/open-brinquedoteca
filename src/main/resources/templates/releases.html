@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Central de Ajuda</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: tutorial-css}"/>
+    </head>
+    <body>
+        <!-- navbar tutorial ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (ajuda='true')}"></nav>
+
+        <div class="container-fluid">
+            <div class="row mt-4">
+
+                <nav th:replace="~{fragments/sidebars/sidebar-tutorial :: sidebar-tutorial}"></nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+                    <ul class="list-group">
+                        <li class="list-group-item item bg-light active text-muted">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.5.</span></h5>
+                            <p>correções de bug no upload de imagens.</p>
+                        </li>
+                        <li class="list-group-item item bg-light text-muted">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.4.</span></h5>
+                            <p>Melhora no desempenho.</p>
+                            <p>correções de bug no cadastro de curadores.</p>
+                        </li>
+                        <li class="list-group-item item bg-light text-muted">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.3.</span></h5>
+                            <p>correções na interface.</p>
+                        </li>
+                        <li class="list-group-item item bg-light text-muted">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.2.</span></h5>
+                            <p>Criação dos tutorias.</p>
+                            <p>mudança na tela de canto e objeto lúdico.</p>
+                            <p>correções na interface.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.1.</span></h5>
+                            <p>mudança na fonte do sistema.</p>
+                            <p>correções na interface.</p>
+                            <p>Problema com as imagens imbuídas na descrição dos objetos.</p>
+                            <p>correção no logo na pagina de login</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.1.0.</span></h5>
+                            <p>Correção no rodapé das paginas.</p>
+                            <p>Mudanças tipográficas para o cliente.</p>
+                            <p>Aumento no limite de caracteres no campo descrição.</p>
+                            <p>Tradução nos botões do editor de textos</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.5.</span></h5>
+                            <p>Correção de bugs no cadastro de curadores.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.4.</span></h5>
+                            <p>Adicionado botão para cadastro de curador como administrador.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.3.</span></h5>
+                            <p>Criação da tela de boas vindas. e correções no login.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.2.</span></h5>
+                            <p>Adição de tela para configuração inicial do sistema.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.1.</span></h5>
+                            <p>Melhorias na navegação.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Brinquedoteca <span class="badge badge-warning">1.0.0.</span></h5>
+                            <p>Cadastro de objetos e cantos, e navegação.</p>
+                        </li>
+                    </ul>
+                </main>
+            </div>
+        </div>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: tutorial-javascript}"></script>
+    </body>
+</html>

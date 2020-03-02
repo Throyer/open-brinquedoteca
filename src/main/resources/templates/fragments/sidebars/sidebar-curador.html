@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar-curador">
+    <div class="sidebar-sticky">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            Gerenciamento dos curadores
+        </h6>
+
+        <!-- Lista de botões de gerenciamento -->
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a role="button" href="/curador/gerenciamento"
+                   th:class="${index} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark'">
+                    <i class="fas fa-database"></i> Curadores
+                </a>
+            </li>
+
+            <li class="list-group-item">
+                <a role="button" href="/curador/formulario"
+                   th:class="${formulario} ? 'btn btn-block btn btn-outline-dark active' : 'btn btn-block btn-outline-dark'">
+                    <i class="fas fa-certificate"></i> Cadastrar novo
+                </a>
+            </li>
+        </ul><!-- /Fim da lista de botões de gerenciamento -->
+    </div>
+</nav>

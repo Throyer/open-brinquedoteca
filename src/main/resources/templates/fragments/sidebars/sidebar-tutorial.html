@@ -1,0 +1,106 @@
+<nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar-tutorial">
+
+
+
+    <ul class="list-unstyled components lista-ajuda">
+
+        <h1 class="text-shadown-tutorial">Tutoriais <i class="fas fa-book-open"></i></h1>
+
+        <li>
+            <a href="/tutorial">
+                <i class="fab fa-wpexplorer"></i>
+                Explore
+            </a>
+        </li>
+        <li sec:authorize="hasAuthority('CURADOR')" >
+            <a href="#editor" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fas fa-pencil-alt"></i>
+                Editor de texto
+            </a>
+            <ul class="collapse list-unstyled" id="editor">
+                <li>
+                    <a href="/tutorial/editor#basico">
+                        <i class="fas fa-align-left"></i>
+                        Conhecendo o basico do editor
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/editor#imagens">
+                        <i class="fas fa-images"></i>
+                        Trabalhando com imagens e videos
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li sec:authorize="hasAuthority('CURADOR')" >
+            <a href="#objetos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fab fa-fort-awesome"></i>
+                Objetos lúdicos
+            </a>
+            <ul class="collapse list-unstyled" id="objetos">
+                <li>
+                    <a href="/tutorial/objeto#gerenciar-objetos">
+                        <i class="fas fa-wrench"></i>
+                        Gerenciando os objetos lúdicos do sistema
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/objeto#cadastrar-objetos">
+                        <i class="fas fa-certificate"></i>
+                        Cadastrando um novo Objeto lúdico
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/objeto#remover-objetos">
+                        <i class="fas fa-trash-alt"></i>
+                        Removendo um objeto lúdico
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/objeto#editar-objetos">
+                        <i class="fas fa-edit"></i>
+                        Editando Objeto
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li sec:authorize="hasAuthority('CURADOR')" >
+            <a href="#cantos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fas fa-cube"></i>
+                Cantos
+            </a>
+            <ul class="collapse list-unstyled" id="cantos">
+                <li>
+                    <a href="/tutorial/canto#gerenciar-cantos">
+                        <i class="fas fa-wrench"></i>
+                        Gerenciando os cantos do sistema
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/canto#cadastrar-cantos">
+                        <i class="fas fa-certificate"></i>
+                        Cadastrando um novo canto
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/canto#remover-cantos">
+                        <i class="fas fa-trash-alt"></i>
+                        Removendo um canto
+                    </a>
+                </li>
+                <li>
+                    <a href="/tutorial/canto#editar-cantos">
+                        <i class="fas fa-edit"></i>
+                        Editando Canto
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/releases">
+                <i class="fas fa-flag"></i>
+                Lançamentos
+            </a>
+        </li>
+    </ul>
+</nav> <!-- /fim sidebar -->

@@ -1,0 +1,43 @@
+<table th:fragment="table-objetos" id="confg-global" class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Canto</th>
+            <th scope="col">Ultima atualizacao feita por</th>
+            <th scope="col" class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="objeto : ${objetos}"
+            th:class="${atualizado} ? (${objeto.id == atualizado.id} ? 'table-warning' : '')">
+            <td>
+                <span th:text="${objeto.nome}"></span>
+                <span th:if="${objeto.urlImagem == null}" class="badge badge-pill badge-warning">sem imagem</span>
+                <span th:if="${objeto.preview == ''}" class="badge badge-pill badge-danger">Sem preview de descição</span>
+            </td>
+            <td>
+                <span th:text="${objeto.canto.nome}"></span>
+            </td>
+            <td>
+                <span th:text="${objeto.usuario.nome}"></span>
+                <span th:text="${objeto.usuario.sobrenome}"></span>
+            </td>
+            <td class="text-center" style="width: 117pt;">
+                <a th:href="@{/objeto/view/{id}(id=${objeto.id})}" title='Visualizar'
+                   class="botao-view no-underline">
+                    <i class="far fa-eye"></i>
+                </a>
+                <a th:href="@{/objeto/editar/{id}(id=${objeto.id})}" title='Editar'
+                   class="botao-edit no-underline">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="remover" title="Remvoer"
+                   class="botao-del no-underline"
+                   data-toggle="modal" data-target="#modal-objeto"
+                   th:data-nome="${objeto.nome}" th:data-id="${objeto.id}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>                                
+    </tbody>
+</table>

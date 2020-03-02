@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Formulário | Canto</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: simplemde-css}" />
+    </head>
+    <body>
+        <!-- navbar com iconte de gerenciamento ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <!-- conteudo de formulario de canto -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- lado esquedo - sidebar canto -->
+                <nav th:replace="~{fragments/sidebars/sidebar-canto :: sidebar-canto (formulario='true')}"></nav>
+                <!-- lado direito - formulario canto -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Formulário de Canto</h4>
+                    <!-- alerta de sucesso no cadastro -->
+                    <div th:replace="~{fragments/alerts/alertas-canto :: cadastro}"></div>
+                    <!-- formulario de canto -->
+                    <form th:replace="~{fragments/formularios/form-canto :: form-canto}"></form>
+                </main><!-- fim do lado direito -->
+            </div>
+        </div><!-- fim do conteudo de formulario de canto -->
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: simplemde-javascript}"></script>
+    </body>
+</html>

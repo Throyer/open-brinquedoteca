@@ -1,0 +1,79 @@
+/*
+Version : 11/07/2018, 03:01:53
+Author  : Renato henique Horacio dos Santos.
+
+Documento de estilo para as paginas de gerenciamento.
+*/
+
+body {
+    font-size: .875rem;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.navbar {
+    box-shadow: 0px -5px 10px 0px rgba(50, 50, 50, 0.2);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+/*
+ * Utilities
+ */
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+/*
+ * Removendo editor de Markdown de baixo do sidebar
+ */
+.editor-toolbar.fullscreen, .CodeMirror-fullscreen, .navbar { z-index: 101 !important; }
+
+.botao-del {
+    font-size: 17pt;
+    color: #bd2130;
+}
+
+.botao-view {
+    font-size: 17pt;
+    color: #007bff;
+    
+}
+
+.botao-edit {
+    font-size: 17pt;
+    color: #ffc107;
+}
+
+.no-underline:hover {text-decoration: none; border-bottom: 0}

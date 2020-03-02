@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Brinquedoteca</title>
+        <link th:replace="~{fragments/css :: noty-css}"/>
+    </head>
+    <body class="background-azul">
+        <!-- navbar com icone de pagina inicial ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (home='true')}"></nav>
+        <!-- conteudo da pagina inicial -->
+        <main class="container espaco">
+            <!-- alerta de sucesso na configuracao -->
+            <div th:if="${adminstrador}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <small>
+                    <p>Brinquedoteca configurada com sucesso.</p>
+                    <p>Administrador: <strong><span th:text="${adminstrador.nome}"></span> <span th:text="${adminstrador.sobrenome}"></span></strong></p>
+                    <p>email: <strong><span th:text="${adminstrador.email}"></span></strong></p>
+                    <p>Diretorio das imagens: <strong> FUNCONALIDADE EM DESENVOLVIMENTO</strong></p>
+                </small>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </div>
+            <!-- alerta de configuração já feita -->
+            <div th:if="${config}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h1>A Brinquedoteca já foi configurada.</h1>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </button>
+            </div>
+            <!-- texto da pagina inicial -->
+            <div style="margin-top: 30pt;" class="espaco rounded">
+                <h1 class="text-center text-shadown">Brinquedoteca</h1>
+                <h1 class="text-center text-shadown">Virtual <i class="fab fa-fort-awesome"></i></h1>
+                <p style="font-size: 20pt" class="text-shadown-tutorial">
+                    Ambiente de aprendizagem com o objetivo de ampliar as oportunidades de acesso
+                    das crianças e o público em geral a jogos, brincadeiras e atividades lúdicas,
+                    culturais e estéticas.
+                </p>
+            </div>
+        </main>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: noty-javascript}"></script>
+    </body>
+</html>

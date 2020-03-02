@@ -1,0 +1,37 @@
+<table th:fragment="table-cantos" id="confg-global" class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Objetos</th>
+            <th scope="col">Ultima atualizacao feita por</th>
+            <th scope="col" class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="canto : ${cantos}"
+            th:class="${atualizado} ? (${canto.id == atualizado.id} ? 'table-warning' : '')">
+            <td><span th:text="${canto.nome}"></span></td>
+            <td><span th:text="${#lists.size(canto.objetos)}"></span></td>
+            <td>
+                <span th:text="${canto.usuario.nome}"></span>
+                <span th:text="${canto.usuario.sobrenome}"></span>
+            </td>
+            <td class="text-center">
+                <a th:href="@{/canto/exibe(id=${canto.id})}" title='Visualizar'
+                   class="botao-view no-underline">
+                    <i class="far fa-eye"></i>
+                </a>
+                <a th:href="@{/canto/editar/{id}(id=${canto.id})}" title='Editar'
+                   class="botao-edit no-underline">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="remover" title="Remvoer"
+                   class="botao-del no-underline"
+                   data-toggle="modal" data-target="#modal-canto"
+                   th:data-nome="${canto.nome}" th:data-id="${canto.id}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>                                
+    </tbody>
+</table>

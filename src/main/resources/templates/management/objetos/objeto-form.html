@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Formulário | Objeto Lúdico</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+        <link th:replace="~{fragments/css :: simplemde-css}" />
+    </head>
+    <body>
+        <!-- navbar com iconte de gerenciamento ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <!-- conteudo de formulario de objeto ludico -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- lado esquedo - sidebar objeto ludico -->
+                <nav th:replace="~{fragments/sidebars/sidebar-objeto :: sidebar-objeto (formulario='true')}"></nav>
+                <!-- lado direito - formulario objeto ludico -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <h4 class="mb-3">Formulário de Objeto Lúdico</h4>
+                    <!-- alerta de sucesso no cadastro -->
+                    <div th:replace="~{fragments/alerts/alertas-objeto :: cadastro}"></div>
+                    <!-- formulario de canto -->
+                    <form th:replace="~{fragments/formularios/form-objeto :: form-objeto}"></form>                    
+                </main>
+            </div>
+        </div>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: formularios-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: simplemde-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: objeto-form-javascript}"></script>
+    </body>
+</html>

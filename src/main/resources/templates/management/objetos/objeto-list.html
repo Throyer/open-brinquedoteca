@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar | Objetos Lúdicos</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+    </head>
+    <body>
+        <!-- navbar com iconte de gerenciamento ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- lado esquedo - sidebar objeto -->
+                <nav th:replace="~{fragments/sidebars/sidebar-objeto :: sidebar-objeto (index='true')}"></nav>
+                <!-- lado direito - listar cantos -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <!-- alerta de upload maximo exedido --> 
+                    <div th:replace="~{fragments/alerts/alertas-upload :: maxUploadSize}"></div>
+                    <!-- alerta de sucesso na atualizacao -->
+                    <div th:replace="~{fragments/alerts/alertas-objeto :: atualizado}"></div>
+                    <!-- alerta de sucesso na remocao -->
+                    <div th:replace="~{fragments/alerts/alertas-objeto :: removeu}"></div>
+                    <!-- tabela de cantos -->
+                    <table th:replace="~{fragments/tabelas/table-objetos :: table-objetos}"></table>
+                </main>
+            </div>
+        </div>
+        <div th:replace="~{fragments/modals/modal-remover-objeto :: modal-objeto}"></div>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: gerenciamento-javascript}"></script>
+    </body>
+</html>

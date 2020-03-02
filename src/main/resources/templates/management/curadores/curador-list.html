@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <!-- importando head -->
+    <head th:replace="~{fragments/head :: head(~{::title},~{::link})}">
+        <title>Gerenciar | Curadores</title>
+        <link th:replace="~{fragments/css :: gerenciamento-css}"/>
+    </head>
+    <body>
+        <!--  navbar com iconte de gerenciamento ativo -->
+        <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- lado esquedo - sidebar curador -->
+                <nav th:replace="~{fragments/sidebars/sidebar-curador :: sidebar-curador (index='true')}"></nav>
+                <!-- lado direito - listar curadores -->
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <!-- alerta de sucesso na atualizacao -->
+                    <div th:replace="~{fragments/alerts/alertas-curador :: atualizado}"></div>
+                    <!-- alerta de sucesso na remocao -->
+                    <div th:replace="~{fragments/alerts/alertas-curador :: removeu}"></div>
+                    <!-- erros -->
+                    <div th:replace="~{fragments/alerts/alertas-curador :: erro}"></div>
+                    <!-- tabela de curadores -->
+                    <table th:replace="~{fragments/tabelas/table-curadores :: table-curadores}"></table>                    
+                </main><!-- fim do lado direito - listagem dos curadores -->
+            </div>
+        </div>
+        <div th:replace="~{fragments/modals/modal-remover-curador :: modal-curador}"></div>
+        <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
+        <script th:replace="~{fragments/javascript :: gerenciamento-javascript}"></script>
+    </body>
+</html>

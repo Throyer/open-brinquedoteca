@@ -1,0 +1,46 @@
+<form th:fragment="form-canto" th:action="@{/canto/formulario}" method="post" th:object="${canto_}" class="needs-validation" novalidate>
+    <!-- id do canto -->
+    <input hidden th:field="*{id}" name="id">
+    <hr class="mb-4">
+    <!-- mensagens de erro -->
+    <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">
+        <ul class="list-group">
+            <li class="lista-erros" th:each="err : ${#fields.errors('*')}" th:utext="${err}">
+                <span class="badge badge-primary badge-pill">14</span>
+            </li>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+            </span>
+        </button>
+    </div>
+    <h6 class="mb-3">Informações sobre o canto</h6>
+    <!-- Campos do canto -->
+    <div class="row">
+        <div class="col-md-6 mb-6">
+            <label for="inputNome">Nome</label>
+            <input th:field="*{nome}" name="nome" type="text" class="form-control" id="inputNome" value="" required>
+            <div class="invalid-feedback">
+                Por favor, digite um nome para o canto.
+            </div>
+        </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
+        <div class="col">
+            <label for="canto-descricao">
+                Descrição
+                <small>
+                    <i class="fas fa-question-circle"></i>
+                    não obrigatório
+                </small>
+            </label>
+            <textarea name="descricao" id="editor-markdown-descricao"
+                      th:field="*{descricao}">                                              
+            </textarea>
+        </div>
+    </div><!-- fim dos campos da coleta -->
+    <hr class="mb-4">
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+</form>

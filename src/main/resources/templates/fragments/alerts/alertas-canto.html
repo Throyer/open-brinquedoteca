@@ -1,0 +1,34 @@
+<div th:fragment="cadastro" th:if="${cadastro}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <small>Canto <strong><span th:text="${cadastro.nome}"></span></strong> cadastrado com sucesso!</small>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+        </span>
+    </button>
+</div>
+
+<div th:fragment="removeu" th:if="${removeu}" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <small>
+        Canto <strong>
+            <span th:text="${removeu.nome}"></span>
+        </strong>
+        removido, juntamente com seus
+        <span th:text="${#lists.size(removeu.objetos)}">                                
+        </span>
+        objetos lúdicos!
+    </small>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+        </span>
+    </button>
+</div>
+
+<div th:fragment="atualizado" th:if="${atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <small>Canto <strong><span th:text="${atualizado.nome}"></span></strong> atualizado com sucesso!</small>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+        </span>
+    </button>
+</div>
