@@ -1,7 +1,7 @@
 <form th:fragment="form-objeto" th:action="@{/objeto/formulario}" method="post" th:object="${objetoLudico}" class="needs-validation" enctype="multipart/form-data" novalidate>
     
     <input hidden th:field="*{id}" name="id">
-    <input hidden th:field="*{usuario}" name="usuario">
+    <input hidden th:field="*{createdBy}" name="createdBy">
     <hr class="mb-4">
     <!-- mensagens de erro -->
     <div class="alert alert-danger alert-dismissible fade show" th:if="${#fields.hasErrors('*')}">

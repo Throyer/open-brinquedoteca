@@ -19,8 +19,8 @@
                 <span th:text="${objeto.canto.nome}"></span>
             </td>
             <td>
-                <span th:text="${objeto.usuario.nome}"></span>
-                <span th:text="${objeto.usuario.sobrenome}"></span>
+                <span th:text="${objeto.createdBy.nome}"></span>
+                <span th:text="${objeto.createdBy.sobrenome}"></span>
             </td>
             <td class="text-center" style="width: 117pt;">
                 <a th:href="@{/objeto/view/{id}(id=${objeto.id})}" title='Visualizar'

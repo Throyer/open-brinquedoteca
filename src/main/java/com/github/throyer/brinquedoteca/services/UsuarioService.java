@@ -1,15 +1,14 @@
 package com.github.throyer.brinquedoteca.services;
 
-import java.util.List;
-
 import com.github.throyer.brinquedoteca.domain.model.Usuario;
 import com.github.throyer.brinquedoteca.domain.repository.UsuarioRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UsuarioService {
@@ -21,6 +20,10 @@ public class UsuarioService {
     /* Classe de criptografia */
     @Autowired
     private BCryptPasswordEncoder encoder;
+
+    public List<Usuario> findByCargo(String cargo) {
+        return repository.findByCargos_nome(cargo);
+    }
 
     public List<Usuario> obterTodos() {
         return repository.findAll();

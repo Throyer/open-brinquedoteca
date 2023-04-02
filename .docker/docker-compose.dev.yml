@@ -1,0 +1,68 @@
+version: '3'
+services:
+
+  database:
+    image: postgres:13
+    restart: unless-stopped
+    container_name: open-brinquedoteca-database
+    command:
+      [
+        "postgres",
+        "-c",
+        "log_statement=all",
+        "-c",
+        "log_destination=stderr",
+        "-p",
+        "${DB_PORT}"
+      ]
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      TZ: ${TIMEZONE}
+      PGTZ: ${TIMEZONE}
+    volumes:
+      - ~/.volumes/open-brinquedoteca/database/postgresql:/var/lib/postgresql/data
+    networks:
+      - open-brinquedoteca-network
+    tty: true
+
+  brinquedoteca:
+    build:
+      context: ../
+      dockerfile: .docker/Dockerfile.dev
+    image: throyer/open-brinquedoteca-api-development:latest
+    restart: unless-stopped
+    container_name: open-brinquedoteca-api
+    links:
+      - database
+    ports:
+      - "${BRINQUEDOTECA_PORT}:${BRINQUEDOTECA_PORT}"
+      - "${BRINQUEDOTECA_DEBUG_PORT}:${BRINQUEDOTECA_DEBUG_PORT}"
+    volumes:
+      - ../:/app
+      - ~/.m2:/root/.m2
+    working_dir: /app
+    networks:
+      - open-brinquedoteca-network
+    tty: true
+    environment:
+      TZ: "${TIMEZONE}"
+    env_file: ".env"
+    entrypoint: [
+      "dockerize",
+      "-wait",
+      "tcp://database:${DB_PORT}",
+      "-timeout",
+      "20s",
+      'mvn',
+      'spring-boot:run',
+      '-Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,address=*:${BRINQUEDOTECA_DEBUG_PORT},suspend=n"'
+    ]
+
+networks:
+  open-brinquedoteca-network:
+    driver: bridge
+    name: brinquedoteca

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static java.util.Arrays.asList;
+
 @Controller
 public class CuradorController {
 
@@ -58,10 +60,7 @@ public class CuradorController {
      */
     @RequestMapping(value = { "/curador", "/curador/gerenciamento" })
     public String paginaInicial(Model listar) {
-
-        /* obtendo todos curadores */
-        listar.addAttribute("curadores", cargoService.ObterCargoPorNome("CURADOR").getUsuarios());
-
+        listar.addAttribute("curadores", usuarioService.findByCargo("CURADOR"));
         return TemplatePath.CURADOR_LISTA.getPath();
     }
 
@@ -78,7 +77,7 @@ public class CuradorController {
         formulario.addAttribute("cargos", cargoService.obterTodos());
 
         /* passando novo curador com o cargo de curador para o model */
-        formulario.addAttribute("curador", new Usuario(Arrays.asList(cargoService.ObterCargoPorNome("CURADOR"))));
+        formulario.addAttribute("curador", new Usuario(asList(cargoService.ObterCargoPorNome("CURADOR"))));
 
         return TemplatePath.CURADOR_FORMULARIO.getPath();
     }
@@ -123,7 +122,7 @@ public class CuradorController {
             formulario.addAttribute("cargos", cargoService.obterTodos());
 
             /* passando novo curador com o cargo de curador para o model */
-            curador.setCargos(Arrays.asList(cargoService.ObterCargoPorNome("CURADOR")));
+            curador.setCargos(asList(cargoService.ObterCargoPorNome("CURADOR")));
             formulario.addAttribute("curador", curador);
 
             return TemplatePath.CURADOR_FORMULARIO.getPath();
@@ -136,12 +135,12 @@ public class CuradorController {
             if (cargo.equals("CURADOR")) {
 
                 /* Definindo o cargo de CURADOR */
-                curador.setCargos(Arrays.asList(cargoCurador));
+                curador.setCargos(asList(cargoCurador));
 
             } else if (cargo.equals("ADMINISTRADOR")) {
 
                 /* Definindo o cargo de CURADOR e ADMINISTRADOR */
-                curador.setCargos(Arrays.asList(cargoCurador, cargoAdministrador));
+                curador.setCargos(asList(cargoCurador, cargoAdministrador));
             }
 
             if (novo) {

@@ -124,7 +124,7 @@ public class ObjetoController {
                 objetoLudico.setCanto(cantoService.obterPorId(objetoLudico.getCanto().getId()));
 
                 /* Passando usuario */
-                objetoLudico.setUsuario(usuarioService.getUsuarioLogado());
+                objetoLudico.setCreatedBy(usuarioService.getUsuarioLogado());
 
                 /* Salvando edificio */
                 objetoService.salvarObjeto(objetoLudico);
@@ -148,7 +148,7 @@ public class ObjetoController {
                 objetoLudico.setCanto(cantoService.obterPorId(objetoLudico.getCanto().getId()));
 
                 /* Passando usuario */
-                objetoLudico.setUsuario(usuarioService.getUsuarioLogado());
+                objetoLudico.setCreatedBy(usuarioService.getUsuarioLogado());
 
                 /* Salvando edificio */
                 objetoService.salvarObjeto(objetoLudico);

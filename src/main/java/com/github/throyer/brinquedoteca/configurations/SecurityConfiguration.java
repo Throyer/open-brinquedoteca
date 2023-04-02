@@ -24,18 +24,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     /* obter email, senha e atividade */
-    private static final String USERSBYUSERNAMEQUERY = "select email, senha, atividade from usuario where email=?";
+    private static final String SELECT_EMAIL_SENHA_FROM_USUARIO_WHERE_EMAIL = "select email, senha, 1 as active from usuario where email=?";
 
     /* email e cargos do usuario */
-    private static final String AUTHORITIESBYUSRNAMEQUERY = "select u.email, c.nome from usuario u inner join usuario_cargo uc on(u.id=uc.usuario_id) inner join cargo c on (uc.cargo_id = c.id) where u.email=?";
+    private static final String SELECT_ROLES_FROM_USER = "select u.email, c.nome from usuario u inner join usuario_cargo uc on(u.id=uc.usuario_id) inner join cargo c on (uc.cargo_id = c.id) where u.email=?";
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.
                 jdbcAuthentication()
-                .usersByUsernameQuery(USERSBYUSERNAMEQUERY)
-                .authoritiesByUsernameQuery(AUTHORITIESBYUSRNAMEQUERY)
+                .usersByUsernameQuery(SELECT_EMAIL_SENHA_FROM_USUARIO_WHERE_EMAIL)
+                .authoritiesByUsernameQuery(SELECT_ROLES_FROM_USER)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }

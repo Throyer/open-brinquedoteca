@@ -1,9 +1,8 @@
 package com.github.throyer.brinquedoteca.domain.model;
 
-import java.io.Serializable;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
+
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.FetchType.EAGER;
+import static lombok.AccessLevel.NONE;
 
 @Entity
+@Getter
+@Setter
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,113 +47,27 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String senha;
 
-    private Integer atividade;
+    @Transient
+    private Integer atividade = 0;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<Canto> cantos;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<ObjetoLudico> objetos;
-
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = DETACH, fetch = EAGER)
     @JoinTable(name = "usuario_cargo",
-            joinColumns = {
-                @JoinColumn(name = "usuario_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "cargo_id")})
+        joinColumns = {@JoinColumn(name = "usuario_id")},
+        inverseJoinColumns = {@JoinColumn(name = "cargo_id")}
+    )
     private List<Cargo> cargos;
 
+    @Getter(NONE)
     @Transient
     private boolean administrador;
 
+    @Getter(NONE)
     @Transient
     private boolean curador;
 
-    public Usuario() {
-        //
-    }
+    public Usuario() { }
 
     public Usuario(List<Cargo> cargos) {
-        this.cargos = cargos;
-    }
-
-    public Usuario(String nome, String sobrenome, String email, String senha, Integer atividade) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = senha;
-        this.atividade = atividade;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Integer getAtividade() {
-        return atividade;
-    }
-
-    public void setAtividade(Integer atividade) {
-        this.atividade = atividade;
-    }
-
-    public List<Canto> getCantos() {
-        return cantos;
-    }
-
-    public void setCantos(List<Canto> cantos) {
-        this.cantos = cantos;
-    }
-
-    public List<ObjetoLudico> getObjetos() {
-        return objetos;
-    }
-
-    public void setObjetos(List<ObjetoLudico> objetos) {
-        this.objetos = objetos;
-    }
-
-    public List<Cargo> getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(List<Cargo> cargos) {
         this.cargos = cargos;
     }
 

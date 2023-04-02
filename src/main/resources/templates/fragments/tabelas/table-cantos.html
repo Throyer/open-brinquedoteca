@@ -2,7 +2,6 @@
     <thead>
         <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Objetos</th>
             <th scope="col">Ultima atualizacao feita por</th>
             <th scope="col" class="text-center">Ações</th>
         </tr>
@@ -11,10 +10,9 @@
         <tr th:each="canto : ${cantos}"
             th:class="${atualizado} ? (${canto.id == atualizado.id} ? 'table-warning' : '')">
             <td><span th:text="${canto.nome}"></span></td>
-            <td><span th:text="${#lists.size(canto.objetos)}"></span></td>
             <td>
-                <span th:text="${canto.usuario.nome}"></span>
-                <span th:text="${canto.usuario.sobrenome}"></span>
+                <span th:text="${canto.createdBy.nome}"></span>
+                <span th:text="${canto.createdBy.sobrenome}"></span>
             </td>
             <td class="text-center">
                 <a th:href="@{/canto/exibe(id=${canto.id})}" title='Visualizar'

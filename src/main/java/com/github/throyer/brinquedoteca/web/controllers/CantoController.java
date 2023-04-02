@@ -57,7 +57,7 @@ public class CantoController {
      * Formulario de cadastro de Canto. Direciona o Curador para o formulario de
      * cadastro de um novo canto.
      *
-     * @param formulario.
+     * @param Model formulario.
      * @return view 'formulario de canto vazio'
      */
     @GetMapping("/canto/formulario")
@@ -104,7 +104,7 @@ public class CantoController {
             if (novo) {
                 
                 /* Passando usuario */
-                canto.setUsuario(usuarioService.getUsuarioLogado());
+                canto.setCreatedBy(usuarioService.getUsuarioLogado());
                 
                 /*Salvando canto*/
                 cantoService.salvarCanto(canto);
@@ -118,7 +118,7 @@ public class CantoController {
             } else {
                 
                 /* Passando usuario */
-                canto.setUsuario(usuarioService.getUsuarioLogado());
+                canto.setCreatedBy(usuarioService.getUsuarioLogado());
                 
                 /*Salvando edificio*/
                 cantoService.salvarCanto(canto);
