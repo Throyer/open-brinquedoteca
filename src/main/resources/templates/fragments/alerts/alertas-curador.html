@@ -1,5 +1,5 @@
 <div th:fragment="cadastro" th:if="${cadastro}" class="alert alert-success alert-dismissible fade show" role="alert">
-    <small>Canto <strong><span th:text="${cadastro.nome}"></span></strong> cadastrado com sucesso!</small>
+    <small>Canto <strong><span th:text="${cadastro.name}"></span></strong> cadastrado com sucesso!</small>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">
             <i class="fas fa-times"></i>
@@ -11,7 +11,7 @@
     <small>
         Curador
         <strong>
-            <span th:text="${removeu.nome + ' ' + removeu.sobrenome}"></span>
+            <span th:text="${removeu.name}"></span>
         </strong>
         removido com sucesso!
     </small>
@@ -23,7 +23,7 @@
 </div>
 
 <div th:fragment="atualizado" th:if="${atualizado}" class="alert alert-warning alert-dismissible fade show" role="alert">
-    <small>Curador <strong><span th:text="${atualizado.nome}"></span></strong> atualizado com sucesso!</small>
+    <small>Curador <strong><span th:text="${atualizado.name}"></span></strong> atualizado com sucesso!</small>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">
             <i class="fas fa-times"></i>
@@ -35,7 +35,7 @@
     <small>
         Erro:
         <strong>
-            <span th:text="${erro.nome}"></span>
+            <span th:text="${erro.name}"></span>
         </strong>
     </small>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

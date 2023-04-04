@@ -1,5 +1,6 @@
 package com.github.throyer.brinquedoteca.modules.user.controllers;
 
+import com.github.throyer.brinquedoteca.modules.user.dtos.CreateOrUpdateUser;
 import com.github.throyer.brinquedoteca.modules.user.entities.User;
 import com.github.throyer.brinquedoteca.modules.role.repositories.RoleRepository;
 import com.github.throyer.brinquedoteca.modules.shared.utils.Roles;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -34,50 +34,40 @@ public class CreateOrEditCuratorController {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
 
-    private CreateOrUpdateCuratorService createOrUpdateCurator;
+    private CreateOrUpdateCuratorService service;
 
     @GetMapping("/formulario")
-    public String newCuratorForm(Model formulario) {
-      var defaultRoles = List.of(roleRepository.findByName(Roles.CURATOR));
-      var user = new User(defaultRoles);
-
-      formulario.addAttribute("cargos", roleRepository.findAll());
-      formulario.addAttribute("curador", user);
+    public String newCuratorForm(Model model) {
+      
+      model.addAttribute("roles", roleRepository.findAll());
+      model.addAttribute("user", new CreateOrUpdateUser(Roles.CURATOR));
 
       return FORM;
     }
 
-    @GetMapping("/curador/editar/{id}")
+    @GetMapping("/editar/{id}")
     public String editCuratorForm(Model model, @PathVariable Long id) {
-      var user = userRepository.findById(id);
+      var user = userRepository.findById(id)
+        .map(CreateOrUpdateUser::new);
 
       if (user.isEmpty()) {
         // TODO: show alert user not found
         return "redirect:/curador";
       }
 
-      model.addAttribute("cargos", roleRepository.findAll());
-      model.addAttribute("curador", user.get());
+      model.addAttribute("roles", roleRepository.findAll());
+      model.addAttribute("user", user.get());
 
       return FORM;
     }
 
-    @PostMapping(value = "/curador/formulario")
+    @PostMapping(value = "/formulario")
     public String createOrUpdate(
-      @Valid @ModelAttribute("curador") User curador,
+      @Valid @ModelAttribute("user") CreateOrUpdateUser user,
       BindingResult result,
-      Model formulario,
-      RedirectAttributes redirect,
-      @RequestParam("confirmarSenha") String confirmarSenha,
-      @RequestParam("cargo") String cargo
+      Model model,
+      RedirectAttributes redirect
     ) {
-        return createOrUpdateCurator.createOrUpdate(
-          formulario,
-          result,
-          redirect,
-          curador,
-          confirmarSenha,
-          cargo
-        );
+        return service.createOrUpdate(user, model, result, redirect);
     }
 }
