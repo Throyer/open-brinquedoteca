@@ -10,20 +10,20 @@
         <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}"></nav>
         <div class="container-fluid">
             <div class="row">
-                <!-- lado esquedo - sidebar canto -->
-                <nav th:replace="~{fragments/sidebars/sidebar-canto :: sidebar-canto (index='true')}"></nav>
+                <!-- lado esquedo - sidebar corner -->
+                <nav th:replace="~{fragments/sidebars/sidebar-corner :: sidebar-corner (index='true')}"></nav>
                 <!-- lado direito - listar cantos -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <!-- alerta de sucesso na atualizacao -->
-                    <div th:replace="~{fragments/alerts/alertas-canto :: atualizado}"></div>
+                    <div th:replace="~{fragments/alerts/alertas-corner :: atualizado}"></div>
                     <!-- alerta de sucesso na remocao -->
-                    <div th:replace="~{fragments/alerts/alertas-canto :: removeu}"></div>
+                    <div th:replace="~{fragments/alerts/alertas-corner :: removeu}"></div>
                     <!-- tabela de cantos -->
                     <table th:replace="~{fragments/tabelas/table-cantos :: table-cantos}"></table>
                 </main><!-- fim do lado direito - listagem dos cantos -->
             </div>
         </div>
-        <div th:replace="~{fragments/modals/modal-remover-canto :: modal-canto}"></div>
+        <div th:replace="~{fragments/modals/modal-remover-corner :: modal-corner}"></div>
         <script th:replace="~{fragments/javascript :: essentials-javascript}"></script>
         <script th:replace="~{fragments/javascript :: gerenciamento-javascript}"></script>
     </body>

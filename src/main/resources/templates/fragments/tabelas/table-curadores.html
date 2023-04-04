@@ -7,24 +7,28 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="curador : ${curadores}"
-            th:class="${atualizado} ? (${curador.id == atualizado.id} ? 'table-warning' : '')">
+        <tr th:each="user : ${page.content}"
+            th:class="${atualizado} ? (${user.id == atualizado.id} ? 'table-warning' : '')">
             <td>
-                <span th:text="${curador.nome}"></span>
-                <span th:text="${curador.sobrenome}"></span>
+                <span th:text="${user.name}"></span>
             </td>
             <td>
-                <span th:text="${curador.email}"></span>
+                <span th:text="${user.email}"></span>
             </td>
             <td class="text-center">
-                <a th:href="@{/curador/editar/{id}(id=${curador.id})}" title='Editar'
+                <a th:href="@{/curador/editar/{id}(id=${user.id})}" title='Editar'
                    class="botao-edit no-underline">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="remover" title="Remvoer"
-                   class="botao-del no-underline"
-                   data-toggle="modal" data-target="#modal-curador"
-                   th:data-nome="${curador.nome + ' ' + curador.sobrenome}" th:data-id="${curador.id}">
+                <a 
+                  href="remover"
+                  title="Remvoer" 
+                  class="botao-del no-underline"
+                  data-toggle="modal"
+                  data-target="#modal-curador"
+                  th:data-nome="${user.name}"
+                  th:data-id="${user.id}"
+                >
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

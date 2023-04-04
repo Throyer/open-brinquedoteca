@@ -2,21 +2,21 @@
 <html lang="pt-br">
     <!-- importando head -->
     <head th:replace="~{fragments/head :: head(~{::title},~{})}">
-        <title th:text="${canto.nome}">Brinquedoteca</title>
+        <title th:text="${corner.nome}">Brinquedoteca</title>
     </head>
     <body class="background-azul">
         <!-- navbar com icone dos cantos ativo -->
         <nav th:replace="~{fragments/navbar :: navbar (view_cantos='true')}"></nav>
-        <!-- conteudo da pagina de canto -->
+        <!-- conteudo da pagina de corner -->
         <main class="container espaco">            
-            <!-- conteudo do canto -->
-            <h1 th:text="${canto.nome}" class="titulo-canto"></h1>
+            <!-- conteudo do corner -->
+            <h1 th:text="${corner.nome}" class="titulo-corner"></h1>
             <div class="text-light" id="responsive">
-                <span th:utext="${canto.descricao != null ? canto.descricao : 'Descrição do canto não informada.'}"></span>
+                <span th:utext="${corner.descricao != null ? corner.descricao : 'Descrição do corner não informada.'}"></span>
             </div>
             <hr>
-            <form th:action="@{/canto/pesquisa}" class="form-group row">
-                <input hidden type="number" th:value="${canto.id}" name="id" class="form-control form-control-sm mb-2" placeholder="Pesquisar">
+            <form th:action="@{/corner/pesquisa}" class="form-group row">
+                <input hidden type="number" th:value="${corner.id}" name="id" class="form-control form-control-sm mb-2" placeholder="Pesquisar">
                 <div class="col-sm-10">
                     <input type="text" name="nome" class="form-control form-control-sm mb-2" placeholder="Pesquisar">
                 </div>
@@ -31,7 +31,7 @@
                     </div>
                 </th:block>
             </div>
-            <!-- fim do conteudo do canto -->
+            <!-- fim do conteudo do corner -->
             <div th:replace="~{fragments/pagination/pagination-objetos :: pagination-objetos}"></div>
         </main><!-- fim do conteudo -->
         <footer th:replace="~{fragments/footer :: footer}"></footer>

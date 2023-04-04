@@ -1,20 +1,20 @@
-<div th:fragment="modal-canto" id="modal-canto" class="modal fade" tabindex="-1" role="dialog">
+<div th:fragment="modal-corner" id="modal-corner" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Remover canto</h5>
+                <h5 class="modal-title">Remover corner</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h3>Deseja remover o canto:</h3>
-                <h4 style="color: #ff3333" id="nome">( nome do canto )</h4>
-                <h5>Ao excluir este canto, você tambem apagara seus objetos lúdicos!</h5>
+                <h3>Deseja remover o corner:</h3>
+                <h4 style="color: #ff3333" id="nome">( nome do corner )</h4>
+                <h5>Ao excluir este corner, você tambem apagara seus objetos lúdicos!</h5>
                 <p class="botao-del">Esta ação não tem reparo.</p>
             </div>
             <div class="modal-footer">
-                <form action="/canto/remover" method="post">
+                <form action="/corner/remover" method="post">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
                     <button type="submit" id="excluir" name="id"
                             value="" class="btn btn-danger">

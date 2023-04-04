@@ -1,5 +1,5 @@
-<form th:fragment="form-canto" th:action="@{/canto/formulario}" method="post" th:object="${canto_}" class="needs-validation" novalidate>
-    <!-- id do canto -->
+<form th:fragment="form-corner" th:action="@{/corner/formulario}" method="post" th:object="${canto_}" class="needs-validation" novalidate>
+    <!-- id do corner -->
     <input hidden th:field="*{id}" name="id">
     <hr class="mb-4">
     <!-- mensagens de erro -->
@@ -15,21 +15,21 @@
             </span>
         </button>
     </div>
-    <h6 class="mb-3">Informações sobre o canto</h6>
-    <!-- Campos do canto -->
+    <h6 class="mb-3">Informações sobre o corner</h6>
+    <!-- Campos do corner -->
     <div class="row">
         <div class="col-md-6 mb-6">
             <label for="inputNome">Nome</label>
             <input th:field="*{nome}" name="nome" type="text" class="form-control" id="inputNome" value="" required>
             <div class="invalid-feedback">
-                Por favor, digite um nome para o canto.
+                Por favor, digite um nome para o corner.
             </div>
         </div>
     </div>
     <hr class="mb-4">
     <div class="row">
         <div class="col">
-            <label for="canto-descricao">
+            <label for="corner-descricao">
                 Descrição
                 <small>
                     <i class="fas fa-question-circle"></i>

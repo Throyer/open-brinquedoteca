@@ -2,7 +2,7 @@
     <nav th:if="${objetos.totalPages != 1 && #lists.size(objetoList) != 0}">
         <ul class="pagination">
             <li th:class="${objetos.number == 0} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:href="@{/canto/exibe(id=${canto.id}, page=1)}">
+                <a class="page-link" th:href="@{/corner/exibe(id=${corner.id}, page=1)}">
                     <span class="d-lg-none">
                         <i class="fas fa-angle-double-left"></i>
                     </span>
@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li th:class="${objetos.number == 0} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:href="@{/canto/exibe(id=${canto.id}, page=${objetos.number})}">
+                <a class="page-link" th:href="@{/corner/exibe(id=${corner.id}, page=${objetos.number})}">
                     <span class="d-lg-none">
                         <i class="fas fa-angle-left"></i>
                     </span>
@@ -23,12 +23,12 @@
             </li>
             <li th:class="${objetos.number == (page - 1)} ? 'page-item disabled' : 'page-item'"
                 th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                <a class="page-link" th:href="@{/canto/exibe(id=${canto.id}, page=${page})}"
+                <a class="page-link" th:href="@{/corner/exibe(id=${corner.id}, page=${page})}"
                    th:text="${page}"></a>
             </li>
             <li th:class="${objetos.number + 1 == objetos.totalPages} ? 'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{/canto/exibe(id=${canto.id}, page=${objetos.number + 2})}">
+                   th:href="@{/corner/exibe(id=${corner.id}, page=${objetos.number + 2})}">
                     <span class="d-none d-lg-block">
                         Proximo
                     </span>
@@ -39,7 +39,7 @@
             </li>
             <li th:class="${objetos.number + 1 == objetos.totalPages} ? 'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{/canto/exibe(id=${canto.id}, page=${objetos.totalPages})}">
+                   th:href="@{/corner/exibe(id=${corner.id}, page=${objetos.totalPages})}">
                     <span class="d-none d-lg-block">
                         Último
                     </span>

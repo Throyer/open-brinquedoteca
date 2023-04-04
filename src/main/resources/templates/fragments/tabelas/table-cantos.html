@@ -7,26 +7,26 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="canto : ${cantos}"
-            th:class="${atualizado} ? (${canto.id == atualizado.id} ? 'table-warning' : '')">
-            <td><span th:text="${canto.nome}"></span></td>
+        <tr th:each="corner : ${cantos}"
+            th:class="${atualizado} ? (${corner.id == atualizado.id} ? 'table-warning' : '')">
+            <td><span th:text="${corner.nome}"></span></td>
             <td>
-                <span th:text="${canto.createdBy.nome}"></span>
-                <span th:text="${canto.createdBy.sobrenome}"></span>
+                <span th:text="${corner.createdBy.nome}"></span>
+                <span th:text="${corner.createdBy.sobrenome}"></span>
             </td>
             <td class="text-center">
-                <a th:href="@{/canto/exibe(id=${canto.id})}" title='Visualizar'
+                <a th:href="@{/corner/exibe(id=${corner.id})}" title='Visualizar'
                    class="botao-view no-underline">
                     <i class="far fa-eye"></i>
                 </a>
-                <a th:href="@{/canto/editar/{id}(id=${canto.id})}" title='Editar'
+                <a th:href="@{/corner/editar/{id}(id=${corner.id})}" title='Editar'
                    class="botao-edit no-underline">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a href="remover" title="Remvoer"
                    class="botao-del no-underline"
-                   data-toggle="modal" data-target="#modal-canto"
-                   th:data-nome="${canto.nome}" th:data-id="${canto.id}">
+                   data-toggle="modal" data-target="#modal-corner"
+                   th:data-nome="${corner.nome}" th:data-id="${corner.id}">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

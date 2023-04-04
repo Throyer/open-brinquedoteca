@@ -6,7 +6,7 @@ import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String... args) {
         run(Main.class, args);
     }
 }

@@ -1,4 +1,4 @@
-<form th:fragment="form-objeto" th:action="@{/objeto/formulario}" method="post" th:object="${objetoLudico}" class="needs-validation" enctype="multipart/form-data" novalidate>
+<form th:fragment="form-objeto" th:action="@{/objeto/formulario}" method="post" th:object="${ludicObject}" class="needs-validation" enctype="multipart/form-data" novalidate>
     
     <input hidden th:field="*{id}" name="id">
     <input hidden th:field="*{createdBy}" name="createdBy">
@@ -40,14 +40,14 @@
             <input hidden id="imagem" name="imagem" type="file" class="custom-file-input">
             <div class="mb-4">
                 <label for="selectCanto">Canto</label>
-                <select name="canto" class="custom-select d-block w-100" id="selectCanto" required>
-                    <option value="">Selecionar canto</option>
-                    <option th:each="canto : ${cantos}" th:selected="*{canto} == ${canto}" th:value="${canto.id}">
-                    <span th:text="${canto.nome}"></span>
+                <select name="corner" class="custom-select d-block w-100" id="selectCanto" required>
+                    <option value="">Selecionar corner</option>
+                    <option th:each="corner : ${cantos}" th:selected="*{corner} == ${corner}" th:value="${corner.id}">
+                    <span th:text="${corner.nome}"></span>
                     </option>
                 </select>
                 <div class="invalid-feedback mb-2">
-                    Por favor, selecione o canto do objeto lúdico.
+                    Por favor, selecione o corner do objeto lúdico.
                 </div>
             </div>
             <div class="mb-4">
@@ -61,7 +61,7 @@
                 <label for="inputPreview">
                     Breve descrição 
                     <small>
-                        Sera exibido na listagem na pagina de canto.
+                        Sera exibido na listagem na pagina de corner.
                         <i class="fas fa-question-circle text-danger"></i>
                         obrigatório
                     </small>
@@ -69,7 +69,7 @@
                 <textarea style="height: 195px" th:field="*{preview}" name="preview" maxlength="150" class="form-control" id="inputPreview" required>
                 </textarea>
                 <div class="invalid-feedback">
-                    Forneça uma breve descrição sobre esse objeto lúdico, para exibição na pagina de canto.
+                    Forneça uma breve descrição sobre esse objeto lúdico, para exibição na pagina de corner.
                 </div>
             </div>
         </div>
