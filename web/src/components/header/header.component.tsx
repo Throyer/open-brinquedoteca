@@ -11,7 +11,7 @@ export const Header = (): JSX.Element => {
         <NavLink to="/" title="Timer">
           <Timer size={24} />
         </NavLink>
-        <NavLink to="/corner" title="Histórico">
+        <NavLink to="/gerenciamento/cantos" title="Histórico">
           <Scroll size={24} />
         </NavLink>
       </nav>
