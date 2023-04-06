@@ -1,15 +1,20 @@
-import { Scroll, Timer } from 'phosphor-react'
+import { Alien, Cube, GraduationCap } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
+
+import * as S from './sidebar.styles'
 
 export const Sidebar = () => {
   return (
-    <nav>
+    <S.Container>
       <NavLink to="/gerenciamento/cantos" title="Timer">
-        <Timer size={24} />
+        <Cube size={24} />
       </NavLink>
       <NavLink to="/gerenciamento/objetos-ludicos" title="Histórico">
-        <Scroll size={24} />
+        <Alien size={24} />
       </NavLink>
-    </nav>
+      <NavLink to="/gerenciamento/curadores" title="Histórico">
+        <GraduationCap size={24} />
+      </NavLink>
+    </S.Container>
   )
 }

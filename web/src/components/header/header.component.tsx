@@ -1,18 +1,17 @@
-import { Scroll, Timer } from 'phosphor-react'
+import { Cube, HouseLine, Pinwheel } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 import { HeaderContainer } from './header.styles'
-import { logo } from '../../assets'
 
 export const Header = (): JSX.Element => {
   return (
     <HeaderContainer>
-      <img src={logo} />
+      <Pinwheel size={40} />
       <nav>
         <NavLink to="/" title="Timer">
-          <Timer size={24} />
+          <HouseLine size={24} />
         </NavLink>
         <NavLink to="/gerenciamento/cantos" title="Histórico">
-          <Scroll size={24} />
+          <Cube size={24} />
         </NavLink>
       </nav>
     </HeaderContainer>

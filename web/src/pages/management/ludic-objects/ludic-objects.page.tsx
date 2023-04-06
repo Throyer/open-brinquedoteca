@@ -1,1 +1,2 @@
-export const LudicObjects = (): JSX.Element => <h1>Ludic objects works</h1>
+
+export const LudicObjects = (): JSX.Element => <h1>Objetos ludicos funciona!</h1>
