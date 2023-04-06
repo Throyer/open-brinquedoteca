@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head th:replace="~{fragments/head :: head(~{::title}, ~{::link})}">
+    <title>Gerenciar | Curadores</title>
+    <link th:replace="~{fragments/css :: gerenciamento-css}" />
+  </head>
+  <body>
+    <nav th:replace="~{fragments/navbar :: navbar (gerenciamento='true')}" />
+    
+    <div class="container-fluid">
+      <div class="row">
+        <nav th:replace="~{fragments/sidebars/sidebar-curador :: sidebar-curador (index='true')}" />
+        
+        <main class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main">
+          <div th:replace="~{fragments/alerts/alertas-curador :: atualizado}" />
+          <div th:replace="~{fragments/alerts/alertas-curador :: removeu}" />
+          <div th:replace="~{fragments/alerts/alertas-curador :: erro}" />
+          
+          <table th:replace="~{__${#execInfo.templateName}__/../fragments/curator-table :: curator-table}" />
+        </main>
+      </div>
+    </div>
+    
+    <div th:replace="~{fragments/modals/modal-remover-curador :: modal-curador}" />
+    
+    <script th:replace="~{fragments/javascript :: essentials-javascript}" />
+    <script th:replace="~{fragments/javascript :: gerenciamento-javascript}" />
+  </body>
+</html>

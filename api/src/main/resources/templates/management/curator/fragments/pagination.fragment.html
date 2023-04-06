@@ -1,0 +1,56 @@
+<div 
+  th:fragment="pagination"    
+  class="row justify-content-center">
+  <nav>
+    <ul class="pagination pagination-sm mb-0">
+      <li th:classappend="${pagination.first} ? 'disabled'" class="page-item">
+        <a class="page-link" th:href="@{/{url}(url=${url}, page=0, size=${(param.size)})}">
+          <span class="d-lg-none">
+            <i class="fas fa-angle-double-left"></i>
+          </span>
+          <span class="d-none d-lg-block">
+            Primeira
+          </span>                                
+        </a>
+      </li>
+
+      <li th:classappend="${pagination.first} ? 'disabled'" class="page-item" th:if="${!pagination.first}">
+        <a class="page-link" th:href="@{/{url}(url=${url}, page=${pagination.number -1}, size=${(param.size)})}">
+          <span class="d-lg-none">
+            <i class="fas fa-angle-left"></i>
+          </span>
+          <span class="d-none d-lg-block">
+            Anterior
+          </span>                                
+        </a>
+      </li>
+
+      <li th:classappend="${pagination.number == page} ? 'disabled'" class="page-item" th:each="page : ${#numbers.sequence(pagination.number - 3, pagination.number + 3)}">
+        <a th:if="${page > -1 && page < pagination.totalPages}" class="page-link" th:href="@{/{url}(url=${url}, page=${page}, size=${(param.size)})}" th:text="${page + 1}"></a>
+      </li>
+    
+      <li th:classappend="${pagination.last} ? 'disabled'" class="page-item" th:if="${!pagination.last}">
+        <a class="page-link" th:href="@{/{url}(url=${url}, page=${pagination.number +1}, size=${(param.size)})}">
+          <span class="d-none d-lg-block">
+            Proximo
+          </span>
+          <span class="d-lg-none">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </li>
+    
+      <li th:classappend="${pagina.last} ? 'disabled'" class="page-item">
+        <a class="page-link" th:href="@{/{url}(url=${url}, page=${pagina.totalPages -1}, size=${(param.size)})}">
+          <span class="d-none d-lg-block">
+            Última
+          </span>
+          <span class="d-lg-none">
+            <i class="fas fa-angle-double-right"></i>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <sizes th:replace="~{fragments/utils :: sizes}"></sizes>
+</div>
